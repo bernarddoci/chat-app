@@ -4,7 +4,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const Filter = require('bad-words');
 const { generateMessage, generateLocatonMessage } = require('./utils/messages');
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users');
+const { addUser, removeUser, getUser, getUsersInRoom, getActiveRooms } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -20,9 +20,9 @@ io.on('connection', (socket) => {
     // socket.emit('message', generateMessage('Welcome!'))
     // Broadcast message to all connections except current
     // socket.broadcast.emit('message', generateMessage('A new user has joined!'))
+    socket.emit('activeRooms', getActiveRooms())
     socket.on('join', (options, callback) => {
-        const { error, user } = addUser({ id: socket.id, ...options })
-
+        const { error, user } = addUser({ id: socket.id, username: options.username, room: options.activeroom || options.room })
         if(error) {
             return callback(error)
         }
