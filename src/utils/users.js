@@ -49,7 +49,7 @@ const getActiveRooms = () => {
     const rooms = []
     users.forEach(user => {
         if(!rooms.includes(user.room)) {
-            rooms.push({text: user.room})
+            rooms.push(user.room)
         }
     })
     return rooms
