@@ -40,7 +40,7 @@ input, select {
 button {
     cursor: pointer;
     padding: 12px;
-    background: #7C5CBF;
+    background: rgb(245, 140, 42);
     border: none;
     color: white;
     font-size: 16px;
@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-    background: #6b47b8;
+    background: #f1bf84;
 }
 
 button:disabled {
